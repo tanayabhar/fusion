@@ -4,7 +4,7 @@ $project_args = array(
   'posts_per_page' => -1,
 );
 $project_query = new WP_Query( $project_args );
-if( $project_query->have_posts() ):
+if( $project_query->have_posts() ) {
   ?>
 <div class="portfolio">
   <div class="single-project-active carousel">
@@ -22,9 +22,11 @@ if( $project_query->have_posts() ):
               <div class="heading">
                 <div class="line-2"></div>
                 <?php $get_terms = get_the_terms( $post->ID, 'category' );
+                if( $get_terms && $get_terms[0]->name ){
     
     ?>
                 <p class="category"><?php echo $get_terms[0]->name ;?></p>
+                <?php } ?>
                 <p class="title"><?php the_title(); ?></p>
               </div>
             </div>
@@ -60,5 +62,5 @@ endwhile;
   </div>
 </div>
 <?php
-endif;
+}
 ?>
